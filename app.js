@@ -1,55 +1,58 @@
-import { getThreePokemon } from './poke-utils.js';
-import { capturePokemon } from './localStorage-utils.js';
-import { findPokemonName } from './utils.js';
+import { capturePokemon, encounterPokemon } from './functions/localStorage-utils.js';
+import RawPokeData from './data/pokemon.js';
+// import functions and grab DOM elements
+const radio1 = document.querySelector('#poke-1');
+const radio2 = document.querySelector('#poke-2');
+const radio3 = document.querySelector('#poke-3');
+const img1 = document.querySelector('#poke-img-1');
+const img2 = document.querySelector('#poke-img-2');
+const img3 = document.querySelector('#poke-img-3');
+const button = document.querySelector('#throw');
 
-const button = document.querySelector('button');
+renderThreePokemon();
+// set event listeners 
+button.addEventListener('click', () => {
+    const selectedRadio = document.querySelector(':checked');
+    const selectedPokemonId = selectedRadio.value;
 
-let totalCaptures = 0;
+    capturePokemon(selectedPokemonId);
+    renderThreePokemon();
+});
+// get user input
+// use user input to update state 
+// update DOM to reflect the new state
 
-function pokemonDom() {
-
-    const pokeRadio1 = document.querySelector('#poke1-radio');
-    const pokeRadio2 = document.querySelector('#poke2-radio');
-    const pokeRadio3 = document.querySelector('#poke3-radio');
-
-    const pokeLabel1 = document.querySelector('#poke1-label');
-    const pokeLabel2 = document.querySelector('#poke1-label');
-    const pokeLabel3 = document.querySelector('#poke1-label');
-
-    const threePokemon = getThreePokemon();
-
-    const img1 = document.querySelector('#poke1-img');
-
-    img1.src = threePokemon[0].url_image;
-    pokeLabel1.append(img1);
-    pokeRadio1.value = threePokemon[0].pokemon;
-
-    const img2 = document.querySelector('#poke2-img');
-
-    img2.src = threePokemon[1].url_image;
-    pokeLabel2.append(img2);
-    pokeRadio2.value = threePokemon[1].pokemon;
-
-    const img3 = document.querySelector('#poke3-img');
-
-    img3.src = threePokemon[2].url_image;
-    pokeLabel3.append(img3);
-    pokeRadio3.value = threePokemon[2].pokemon;
-
+function getRandomPokemon() {
+    const randomIndex = Math.floor(Math.random() * RawPokeData.length);
+    const randomPokemom = RawPokeData[randomIndex];
+    return randomPokemom;
 }
 
-pokemonDom();
+function renderThreePokemon() {
+    let poke1 = getRandomPokemon();
+    let poke2 = getRandomPokemon();
+    let poke3 = getRandomPokemon();
 
-button.addEventListener('click', () => {
-    totalCaptures++;
-    const selectedRadio = document.querySelector('input:checked');
-    const pokeObject = findPokemonName(selectedRadio.value);
+    while (
+        poke1.id === poke2.id
+      || poke1.id === poke3.id
+      || poke2.id === poke3.id
+    ) {
+        poke1 = getRandomPokemon();
+        poke2 = getRandomPokemon();
+        poke3 = getRandomPokemon();
 
-    capturePokemon(pokeObject);
-
-    if (totalCaptures >= 10) {
-        window.location = '../results';
     }
-    pokemonDom();
-});
 
+    encounterPokemon(poke1.id);
+    encounterPokemon(poke2.id);
+    encounterPokemon(poke3.id);
+
+    img1.src = poke1.url_image;
+    img2.src = poke2.url_image;
+    img3.src = poke3.url_image;
+
+    radio1.value = poke1.id;
+    radio2.value = poke2.id;
+    radio3.value = poke3.id;
+}

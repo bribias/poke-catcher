@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="./styles/reset.css">
     <link rel="stylesheet" href="./styles/style.css">
     <link rel="stylesheet" href="./styles/home.css">
-    <title>Document</title>
+    <title>Pokedex</title>
 </head>
 
 <body>
@@ -20,17 +20,20 @@
     </header>
     <main>
         <section class="main-section">
-            <label id="poke1-label">
-                <input name="pokemon" type="radio" id="poke1-radio" />
-            </label>
-            <label id="poke2-label">
-                <input name="pokemon" type="radio" id="poke2-radio" />
-            </label>
-            <label id="poke3-label">
-                <input name="pokemon" type="radio" id="poke3-radio" />
-            </label>
+        <label>
+            <input id="poke-1" type="radio" name="pokemon">
+            <img class="poke" id="poke-img-1">
+        </label>
+        <label>
+            <input id="poke-2" type="radio" name="pokemon">
+            <img class="poke" id="poke-img-2">
+        </label>
+        <label>
+            <input id="poke-3" type="radio" name="pokemon">
+            <img class="poke" id="poke-img-3">
+        </label>
             <div>
-                <button>CATCH. THAT. POKEMON!</button>
+                <button id="throw">CATCH. THAT. POKEMON!</button>
             </div>
         </section>
     </main>

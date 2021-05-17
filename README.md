@@ -13,6 +13,7 @@
 
 1. On load
         - call renderThreePokemon
+        
 2. on clicking 'capture' 
         - Get:
              - Current Pokedex
