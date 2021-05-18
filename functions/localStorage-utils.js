@@ -41,3 +41,13 @@ export function encounterPokemon(selectedPokemonId) {
     }
     setPokedex(pokedex);
 }
+
+export function getTotalCaptured() {
+    let total = 0;
+    const pokedex = getPokedex();
+
+    for (let poke of pokedex) {
+        total += poke.captured;
+    }
+    return total;
+}

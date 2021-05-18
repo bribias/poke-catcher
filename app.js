@@ -1,4 +1,4 @@
-import { capturePokemon, encounterPokemon } from './functions/localStorage-utils.js';
+import { capturePokemon, encounterPokemon, getTotalCaptured } from './functions/localStorage-utils.js';
 import RawPokeData from './data/pokemon.js';
 // import functions and grab DOM elements
 const radio1 = document.querySelector('#poke-1');
@@ -10,13 +10,21 @@ const img3 = document.querySelector('#poke-img-3');
 const button = document.querySelector('#throw');
 
 renderThreePokemon();
-// set event listeners 
+
 button.addEventListener('click', () => {
+    // On clicking "capture" button
     const selectedRadio = document.querySelector(':checked');
     const selectedPokemonId = selectedRadio.value;
-
     capturePokemon(selectedPokemonId);
-    renderThreePokemon();
+
+    const totalCaptured = getTotalCaptured();
+
+    if (totalCaptured >= 10) {
+        window.location.replace('./results/results.html');
+    } else {
+        // - call `renderThreePokemon`
+        renderThreePokemon();
+    }
 });
 // get user input
 // use user input to update state 
@@ -35,8 +43,8 @@ function renderThreePokemon() {
 
     while (
         poke1.id === poke2.id
-      || poke1.id === poke3.id
-      || poke2.id === poke3.id
+        || poke1.id === poke3.id
+        || poke2.id === poke3.id
     ) {
         poke1 = getRandomPokemon();
         poke2 = getRandomPokemon();
@@ -56,3 +64,8 @@ function renderThreePokemon() {
     radio2.value = poke2.id;
     radio3.value = poke3.id;
 }
+
+
+// need to know how many total we have captured
+//  if statement -- checks if total number of captured is equzl to 10
+//      --> if captured === 10 -- redirect to results - window.location

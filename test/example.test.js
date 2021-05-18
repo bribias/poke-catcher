@@ -1,36 +1,35 @@
 // IMPORT MODULES under test here:
 // import { example } from '../example.js';
-import { findById } from '../functions/utils.js';
+import { findPokemonName } from '../functions/utils.js';
 
 const test = QUnit.test;
 
-const someArray = [
+const pokeGrab = [
     {
         id: 1,
-        name: 'squirtle',
-        caught: 0,
+        name: 'bulbasaur',
+        caught: 1,
         encountered: 0
     },
     {
         id: 2,
-        name: 'bulbasar',
+        name: 'ivysaur',
         caught: 0,
-        encountered: 0
+        encountered: 1
     }
 ];
 
-test('grab pokemon on id', (expect) => {
+test('grab pokemon name', (expect) => {
     //Arrange
     // Set up your arguments and expectations
-    // const expected = RawPokeData[0];
-    const expected = 'number';
+
+    const expected = ['bulbasaur', 'ivysaur'];
 
     //Act 
     // Call the function you're testing and set the result to a const
-    const foundPoke = findById(someArray, 2);
     
-    const actual = foundPoke.id;
+    const actual = findPokemonName(pokeGrab);
     //Expect
     // Make assertions about what is expected versus the actual result
-    expect.equal(typeof actual, expected);
+    expect.deepEqual(actual, expected);
 });
