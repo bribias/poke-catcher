@@ -10,4 +10,5 @@ export function findById(someArray, someId) {
 
 export function findPokemonName(name) {
     return pokeData.find(poke => name === poke.pokemon);
+
 }

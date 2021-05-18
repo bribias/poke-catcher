@@ -1,4 +1,3 @@
-
 import { findById } from './utils.js';
 
 const POKEDEX = 'POKEDEX';
