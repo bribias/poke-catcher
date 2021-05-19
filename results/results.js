@@ -66,7 +66,7 @@ new Chart(ctx_2, {
 
 resetButton.addEventListener('click', () => {
     // redirect to home
-    window.location = '/';
+    window.location = '../index.html';
 
     setPokedex([]);
 });
