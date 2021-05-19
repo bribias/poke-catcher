@@ -39,7 +39,7 @@ export function mungeEncounters(pokemonArray) {
     const results = [];
     // loop through each item in pokemonArray
     for (let poke of pokemonArray) {
-        results.push(poke.captured);
+        results.push(poke.encountered);
     }
     // push the captured key on the pokemonArray
     // [4, 2, 0] < ====== goal

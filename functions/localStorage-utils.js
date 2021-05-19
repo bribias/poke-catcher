@@ -29,11 +29,11 @@ export function encounterPokemon(selectedPokemonId) {
     const matchingPokemon = findById(pokedex, selectedPokemonId);
 
     if (matchingPokemon) {
-        matchingPokemon.encounterd++;
+        matchingPokemon.encountered++;
     } else {
         const newItem = {
             captured: 0,
-            encounterd: 1,
+            encountered: 1,
             id: selectedPokemonId
         };
         pokedex.push(newItem);

@@ -13,7 +13,7 @@ const capturedData = mungeCaptured(pokedex);
 
 const colors = mungeColors(pokedex);
 
-const encounteredPokemon = mungeEncounters(pokedex);
+const encounteredData = mungeEncounters(pokedex);
 
 
 new Chart(ctx, {
@@ -48,7 +48,7 @@ new Chart(ctx_2, {
         datasets: [
             {
                 label: '# of Encounters',
-                data: encounteredPokemon,
+                data: encounteredData,
                 backgroundColor: colors,
                 borderColor: colors,
                 borderWidth: 1,

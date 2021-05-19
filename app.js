@@ -16,7 +16,7 @@ button.addEventListener('click', () => {
     const selectedRadio = document.querySelector(':checked');
     const selectedPokemonId = selectedRadio.value;
     capturePokemon(selectedPokemonId);
-    console.log('hello');
+
     const totalCaptured = getTotalCaptured();
 
     if (totalCaptured >= 10) {
